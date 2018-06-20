@@ -312,7 +312,7 @@ func (p *Pinger) run() {
 				fmt.Println("FATAL: ", err.Error())
 			}
 		default:
-			if p.Count > 0 && p.PacketsRecv >= p.Count {
+			if p.Count > 0 && p.PacketsSent >= p.Count {
 				close(p.done)
 				wg.Wait()
 				return
