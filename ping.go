@@ -74,9 +74,10 @@ var (
 func NewPinger(addr string) (*Pinger, error) {
 	ipaddr, err := net.ResolveIPAddr("ip", addr)
 	if err != nil {
+		fmt.Println("Dei erro aqui!")
 		return nil, err
 	}
-
+	fmt.Println("Passei sem erro")
 	var ipv4 bool
 	if isIPv4(ipaddr.IP) {
 		ipv4 = true
