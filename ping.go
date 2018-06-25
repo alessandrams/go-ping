@@ -264,10 +264,12 @@ func (p *Pinger) run() {
 	var conn *icmp.PacketConn
 	if p.ipv4 {
 		if conn = p.listen(ipv4Proto[p.network], p.source); conn == nil {
+			fmt.Println("Erro aqui 1")
 			return
 		}
 	} else {
 		if conn = p.listen(ipv6Proto[p.network], p.source); conn == nil {
+			fmt.Println("Erro aqui 2")
 			return
 		}
 	}
