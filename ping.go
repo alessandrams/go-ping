@@ -74,10 +74,8 @@ var (
 func NewPinger(addr string) (*Pinger, error) {
 	ipaddr, err := net.ResolveIPAddr("ip", addr)
 	if err != nil {
-		fmt.Println("Dei erro aqui!")
 		return nil, err
 	}
-	fmt.Println("Passei sem erro")
 	var ipv4 bool
 	if isIPv4(ipaddr.IP) {
 		ipv4 = true
@@ -265,12 +263,10 @@ func (p *Pinger) run() {
 	var conn *icmp.PacketConn
 	if p.ipv4 {
 		if conn = p.listen(ipv4Proto[p.network], p.source); conn == nil {
-			fmt.Println("Erro aqui 1")
 			return
 		}
 	} else {
 		if conn = p.listen(ipv6Proto[p.network], p.source); conn == nil {
-			fmt.Println("Erro aqui 2")
 			return
 		}
 	}
