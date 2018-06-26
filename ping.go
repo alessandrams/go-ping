@@ -274,7 +274,7 @@ func (p *Pinger) run() {
 	defer p.finish()
 
 	var wg sync.WaitGroup
-	recv := make(chan *packet, 5)
+	recv := make(chan *packet, 3)
 	defer close(recv)
 	wg.Add(1)
 	go p.recvICMP(conn, recv, &wg)
