@@ -289,7 +289,7 @@ func (p *Pinger) run() {
 	interval := time.NewTicker(p.Interval)
 	defer interval.Stop()
 	c := make(chan os.Signal, 1)
-	defer close(c)
+	defer signal.Stop(c)
 	signal.Notify(c, os.Interrupt)
 	signal.Notify(c, syscall.SIGTERM)
 
@@ -314,12 +314,11 @@ func (p *Pinger) run() {
 			if err != nil {
 				fmt.Println("FATAL: ", err.Error())
 			}
-		default:
-			if p.Count > 0 && p.PacketsSent >= p.Count {
-				close(p.done)
-				wg.Wait()
-				return
-			}
+		}	
+		if p.Count > 0 && p.PacketsSent >= p.Count {
+			close(p.done)
+			wg.Wait()
+			return
 		}
 	}
 }
